@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameCore.Pool;
 using GameCore.Dialogue;
-using Sirenix.OdinInspector;
 
 public class PoolDemoScript : MonoBehaviour
 {
+    public bool demoIt = false;
     private PoolManager m_poolManager;
     private List<object> m_caches = new List<object>();
     private void Awake()
@@ -15,7 +15,23 @@ public class PoolDemoScript : MonoBehaviour
         m_caches.Clear();
     }
 
-    [Button("Create Command")]
+    public void OnValidate()
+    {
+        if (Application.isPlaying == false)
+        {
+            return;
+        }
+        if (demoIt == false)
+        {
+            return;
+        }
+
+        demoIt = false;
+        CreateCommand();
+        Recycle();
+        m_poolManager.PoolManagerDetail();
+    }
+
     private void CreateCommand()
     {
         for (int i = 0; i < 100; i++)
@@ -54,7 +70,6 @@ public class PoolDemoScript : MonoBehaviour
         }
     }
 
-    [Button("Recycle")]
     private void Recycle()
     {
         for (int i = m_caches.Count -1; i>= 0; i--)

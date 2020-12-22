@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameCore;
 using System;
-using Sirenix.OdinInspector;
 
 namespace GameCore.Pool
 {
@@ -83,8 +82,7 @@ namespace GameCore.Pool
         }
 
 #if UNITY_EDITOR
-        [Button("Details")]
-        private void PoolManagerDetail()
+        public void PoolManagerDetail()
         {
             string detailsString = string.Empty;
             foreach (string key in m_cacheobjects.Keys)
