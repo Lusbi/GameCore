@@ -1,18 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class DefineInfo : MonoBehaviour
+namespace GameCore.Define
 {
-    // Start is called before the first frame update
-    void Start()
+    [System.Serializable]
+    public class DefineInfo
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public bool state;
+        public string defineString;
+        public string description;
     }
 }
