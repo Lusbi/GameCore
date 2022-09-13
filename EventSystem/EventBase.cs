@@ -1,7 +1,6 @@
-﻿namespace GameCore.Event
+namespace GameCore.Event
 {
     public abstract class EventBase
     {
-        
     }
 }

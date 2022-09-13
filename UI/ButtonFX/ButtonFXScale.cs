@@ -8,6 +8,14 @@ namespace GameCore.UI
         [SerializeField] private RectTransform m_rectTransform = null;
         [SerializeField] private ScaleSet m_vectorSet = new ScaleSet();
 
+        private void Awake()
+        {
+            if (m_rectTransform == null)
+            {
+                m_rectTransform = GetComponent<RectTransform>();
+            }
+        }
+
         public override void onClickDown()
         {
             if (m_rectTransform == null)

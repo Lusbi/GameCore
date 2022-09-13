@@ -1,7 +1,7 @@
 using GameCore.UI;
 using System;
 
-public class $UIName: UIBehavior<$UIViewName> , IInitlization
+public class $UIName<$UIViewName> : UIBase
 {
     protected override string view_path => "Prefab/UIs/$UIName";
     public $UIName(System.Action action = null , params Enum[] enums) : base (action , enums)

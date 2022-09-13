@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using GameCore.Resource;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +20,7 @@ namespace GameCore.UI
             identifier = GetHashCode();
             stateID = UIUtils.GetStateID(enums);
             m_callBack = callBack;
-            //ResourceManager.instance.LoadAsync<T>(view_path, ViewLoaded);
+            ResourceManager.instance.LoadAsync<T>(view_path, ViewLoaded);
         }
 
         public virtual void ViewLoaded(T uIViewBase)
@@ -48,7 +49,10 @@ namespace GameCore.UI
 
             m_callBack?.Invoke();
 
-            m_view.Active(false);
+            if (m_view.currentStatus != UIStatus.Enable)
+            {
+                m_view.Active(false);
+            }
         }
 
         public override void Destory()

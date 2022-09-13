@@ -23,7 +23,7 @@ namespace GameCore.UI
 
         [SerializeField] private ButtonFXBase[] m_fxBases = null;
 
-        public int dataKey { get; set; } = -1;
+        public object data { get; set; } = null;
         public UIEventListener eventListener { get; protected set; }
 
         /// <summary>
@@ -135,6 +135,14 @@ namespace GameCore.UI
 
         [Tooltip("按鍵文字")]
         public Text buttonText;
+
+        private void OnEnable()
+        {
+            if (m_fxBases == null || m_fxBases.Length == 0)
+            {
+                m_fxBases = GetComponents<ButtonFXBase>();
+            }
+        }
 
         public void SetButtonText(string text)
         {

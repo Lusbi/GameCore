@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace GameCore.UI
 {
+    [RequireComponent(typeof(GraphicRaycaster))]
     public class UIManager : MonoSingleton<UIManager> , IInitlization
     {
+        private GraphicRaycaster graphicRaycaster;
         private float m_updateTime = 0;
         private long m_stateID;
         private Dictionary<int, UIBase> m_registeredUIs = new Dictionary<int, UIBase>();
@@ -13,6 +16,7 @@ namespace GameCore.UI
         private void Awake()
         {
             m_updateTime = Time.deltaTime;
+            graphicRaycaster = GetComponent<GraphicRaycaster>();
         }
 
         public void Registered(UIBase uIBase)
@@ -56,6 +60,15 @@ namespace GameCore.UI
         {
             m_updateTime = 0;
             m_registeredUIs.Clear();
+        }
+
+        /// <summary>
+        /// 控制介面是否可以點擊操作(全域)
+        /// </summary>
+        /// <param name="state"></param>
+        public void SetGrahpicRaycaster(bool state)
+        {
+            graphicRaycaster.enabled = state;
         }
     }
 }

@@ -9,6 +9,14 @@ namespace GameCore.UI
         [SerializeField] private Image m_image = null;
         [SerializeField] private SpriteSet m_spriteSet = null;
 
+        protected override void AutoCache(bool forceUpdate = false)
+        {
+            if (forceUpdate || m_image == null)
+            {
+                m_image = GetComponent<Image>();
+            }
+        }
+
         public override void onClickDown()
         {
             if (m_image == null)

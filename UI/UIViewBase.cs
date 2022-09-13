@@ -70,17 +70,16 @@ namespace GameCore.UI
             if (HasAnimation)
             {
                 AnimationClip animationClip = viewAnimation.GetClip(animation_enable);
-                if (animationClip == null)
+                if (animationClip != null)
                 {
-                    Log.eLog.Error("[介面] 找不到開啟動畫檔 ..." + gameObject.name);
+                    m_tweener = DOTween.To(AnimationTweener_Enable, 0, 1, animationClip.length).OnComplete(TweenerComplate);
+                    
                     return;
                 }
-                m_tweener = DOTween.To(AnimationTweener_Enable, 0, 1, animationClip.length).OnComplete(TweenerComplate);
+                Log.eLog.Error("[介面] 找不到開啟動畫檔 ..." + gameObject.name);
             }
-            else
-            {
-                m_tweener = DOTween.To(AlphaTweener, 0, 1, m_alphaDurationTime).OnComplete(TweenerComplate);
-            }
+
+            m_tweener = DOTween.To(AlphaTweener, 0, 1, m_alphaDurationTime).OnComplete(TweenerComplate);
         }
         public virtual void ViewDisable()
         {
@@ -88,17 +87,15 @@ namespace GameCore.UI
             if (HasAnimation)
             {
                 AnimationClip animationClip = viewAnimation.GetClip(animation_disable);
-                if (animationClip == null)
+                if (animationClip != null)
                 {
-                    Log.eLog.Error("[介面] 找不到關閉動畫檔 ..." + gameObject.name);
+                    m_tweener = DOTween.To(AnimationTweener_Disable, 1, 0, animationClip.length).OnComplete(TweenerComplate);
                     return;
                 }
-                m_tweener = DOTween.To(AnimationTweener_Disable, 1, 0, animationClip.length).OnComplete(TweenerComplate);
+                Log.eLog.Error("[介面] 找不到關閉動畫檔 ..." + gameObject.name);
             }
-            else
-            {
-                m_tweener = DOTween.To(AlphaTweener, 1, 0, m_alphaDurationTime).OnComplete(TweenerComplate);
-            }
+
+            m_tweener = DOTween.To(AlphaTweener, 1, 0, m_alphaDurationTime).OnComplete(TweenerComplate);
         }
 
 

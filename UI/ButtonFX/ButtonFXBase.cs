@@ -8,6 +8,22 @@ namespace GameCore.UI
     {
         protected bool m_isHover = false;
 
+        [ContextMenu("AutoReference")]
+        private void AutoReference()
+        {
+            AutoCache(true);
+        }
+
+        private void OnValidate()
+        {
+            AutoCache(false);
+        }
+
+        protected virtual void AutoCache(bool forceUpdate = false)
+        {
+
+        }
+
         [Serializable]
         public class ColorSet
         {

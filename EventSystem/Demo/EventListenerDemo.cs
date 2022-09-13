@@ -23,10 +23,13 @@ public class EventListenerDemo : MonoBehaviour
         get { return Application.isPlaying; }
     }
 
+    EventListener eventListener = new EventListener();
+
     private void Start()
     {
-        EventManager.instance.AddListener<EventListenerDemoA>(OnListenerDemoA);
-        EventManager.instance.AddListener<EventListenerDemoB>(OnListenerDemoB);
+        eventListener.Destory();
+        eventListener.Add<EventListenerDemoA>(OnListenerDemoA);
+        eventListener.Add<EventListenerDemoB>(OnListenerDemoB);
     }
 
     private void OnListenerDemoB(EventListenerDemoB obj)
